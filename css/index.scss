@@ -1,0 +1,152 @@
+html {
+    height: 100%;
+}
+
+body {
+    font-family: Avenir, Lato, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, メイリオ, sans-serif;    line-height: 1.428571429;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.retry-play-wrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+    background-color: #0000007d;
+    z-index: 999999;
+}
+
+.music-info-wrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    height: 70%;
+    color: #FFF;
+    font-size: 1.75rem;
+    filter: drop-shadow(3.5px 3.5px 0.5px #000);
+    z-index: 5001;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 10vw;
+    .artwork-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 15vw;
+        height: 100%;
+        .artwork{
+            transform: perspective(200px) rotate3d(0, 1, 0, 10deg);
+            width: 100%;
+            height: 15vw;
+            background: url(../DefaultArtwork.jpg);
+            background-size: cover;
+            -webkit-box-reflect: below 0px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.3));
+        }
+    }
+    .text-infomation{
+        width: calc(100% - 15vw);
+        margin-left: 50px;
+        .title {
+            font-size: 2em;
+            font-weight: bold;
+        }
+    }
+}
+
+.player-settings-view-wrapper {
+    position: absolute;
+    display: block;
+    top: 0;
+    right: 0;
+    z-index: 5001;
+    color: #FFF;
+    padding: 10px 10px;
+    & > *{
+        border: 1px #FFF solid;
+        border-radius: 10px;
+        margin: 2.5px 2.5px;
+        padding: 5px 10px;
+        display: none;
+        &.enable{
+            display: inline-block;
+        }
+    }
+}
+
+.notice-wrapper {
+    position: absolute;
+    display: block;
+    bottom: 0;
+    z-index: 5000;
+    .notice {
+        margin: 2px 5px;
+        -webkit-transform: translateX(-120%);
+        transform: translateX(-120%);
+        padding-left: 4px;
+        color: rgba(205, 205, 205, 0.75);
+        text-shadow: 2px 2px 1px #000, -2px 2px 1px #000, 2px -2px 1px #000, -2px -2px 1px #000;
+        font-weight: bold;
+        opacity: 0;
+        -webkit-animation-name: notice;
+        animation-name: notice;
+        -webkit-animation-duration: 3s;
+        animation-duration: 3s;
+        -webkit-animation-timing-function: ease;
+        animation-timing-function: ease;
+        font-size: 1.5rem;
+    }
+    @keyframes notice {
+        0% {
+            -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+        20% {
+            -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+            opacity: 1;
+        }
+        80% {
+            -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+            opacity: 1;
+        }
+        100% {
+            -webkit-transform: translateX(150px);
+            transform: translateX(150px);
+            opacity: 0;
+        }
+    }
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    height: calc(100%);
+    display: inline-block;
+    text-align: left;
+    #mainScreen {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+    }
+}

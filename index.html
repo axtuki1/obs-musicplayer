@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MusicPlayer</title>
+    <link rel="stylesheet" href="./css/index.min.css">
+    <link rel="stylesheet" href="https://fontlibrary.org/face/segment7" type="text/css">
+    <script>
+        const addConfig = () => {
+            window.MusicPlayer.option.FPSShow = false;
+            let url = new URL(window.location.href);
+            let params = url.searchParams;
+            if (params.get('playlist')) {
+                window.MusicPlayer.playlist.shuffle = true;
+                fetch("./"+params.get('playlist')+".json").then(res => res.json()).then((json) => {
+                    window.MusicPlayer.playlist.musicList = json;
+                    window.MusicPlayer.playlist.Play();
+                });
+            }
+            if (params.get('vol')) {
+                window.MusicPlayer.volume = params.get('vol') / 100;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="notice-wrapper">
+        <div class="notice"></div>
+    </div>
+    <div class="video-wrapper">
+        <canvas id="mainScreen"></canvas>
+    </div>
+    <div class="music-info-wrapper">
+        <div class="artwork-wrapper">
+            <img class="artwork">
+        </div>
+        <div class="text-infomation">
+            <div class="album">[ここにアルバム名を表示]</div>
+            <div class="title">[ここにタイトルを表示]</div>
+            <div class="artist">[ここにアーティスト名を表示]</div>
+        </div>
+    </div>
+    <div class="retry-play-wrapper">
+        Click...
+    </div>
+    <div class="player-settings-view-wrapper">
+        <span class="shuffle enable playlist-mode-view">Shuffle</span>
+        <span class="repeat enable playlist-mode-view">Repeat</span>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"
+        integrity="sha512-YsR46MmyChktsyMMou+Bs74oCa/CDdwft7rJ5wlnmDzMj1mzqncsfJamEEf99Nk7IB0JpTMo5hS8rxB49FUktQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./js/index.js?10rf0d"></script>
+</body>
+
+</html>
